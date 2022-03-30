@@ -125,6 +125,8 @@ public class AppConfig {
   // default chosen table name.
   public String tableName = null;
 
+  public String createTableDefn = null;
+
   // Name of the default database for postgres.
   public String defaultPostgresDatabase = "postgres";
 

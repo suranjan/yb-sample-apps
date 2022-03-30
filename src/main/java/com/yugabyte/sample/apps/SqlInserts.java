@@ -20,7 +20,6 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import com.yugabyte.sample.apps.AppBase.TableOp;
 import com.yugabyte.sample.common.SimpleLoadGenerator.Key;
 
 /**
@@ -48,9 +47,32 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "PostgresqlKeyValue";
+  private static final String DEFAULT_TABLE_NAME = "user_profile";
 
-  // The shared prepared select statement for fetching the data.
+    @Override protected String getKeyspace() {
+        return super.getKeyspace();
+    }
+
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE user_profile\n"
+            + "(\n"
+            + "  k               text PRIMARY KEY,\n"
+            + "  v               text ,\n"
+            + "  id              bigserial not null,\n"
+            + "  userid          bigint not null default 928732,\n"
+            + "  ismasterprofile bigint not null default '0',\n"
+            + "  profiletype     varchar(255) default 'application/pdf',\n"
+            + "  orderid         bigint default '4645',\n"
+            + "  name            varchar(255) default 'Jaymie Bullick',\n"
+            + "  locale          varchar(255),\n"
+            + "  profilepic      varchar(255) default 'http://dummyimage.com/213x100.png/ff4444/ffffff',\n"
+            + "  createdby       bigint default 33956,\n"
+            + "  createddate     timestamptz default '2018-10-15T12:10:21Z',\n"
+            + "  updatedby       bigint default 18315,\n"
+            + "  updateddate     timestamptz default '2018-03-14T02:22:03Z',\n"
+            + "  isdeleted       boolean default 'f'\n"
+            + ") split into 40 tablets;";
+
+    // The shared prepared select statement for fetching the data.
   private volatile Connection selConnection = null;
   private volatile PreparedStatement preparedSelect = null;
 
@@ -87,7 +109,8 @@ public class SqlInserts extends AppBase {
           LOG.info("Dropping any table(s) left from previous runs if any");
       }
       connection.createStatement().execute(
-          String.format("CREATE TABLE IF NOT EXISTS %s (k text PRIMARY KEY, v text)", getTableName()));
+          String.format(getTableDefnString(), getTableName()));
+
       LOG.info(String.format("Created table: %s", getTableName()));
       if (tableOp.equals(TableOp.TruncateTable)) {
       	connection.createStatement().execute(
@@ -97,6 +120,10 @@ public class SqlInserts extends AppBase {
     }
   }
 
+  public String getTableDefnString() {
+      String tableName = appConfig.createTableDefn != null ? appConfig.createTableDefn : DEFAULT_TABLE_DEFN;
+      return tableName.toLowerCase();
+  }
   public String getTableName() {
     String tableName = appConfig.tableName != null ? appConfig.tableName : DEFAULT_TABLE_NAME;
     return tableName.toLowerCase();

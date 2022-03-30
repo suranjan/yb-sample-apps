@@ -13,26 +13,13 @@
 
 package com.yugabyte.sample.common;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
-
-import org.apache.commons.cli.BasicParser;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.OptionBuilder;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-import org.apache.log4j.Logger;
-
 import com.google.common.collect.ImmutableList;
-
-// Import * so we can list the sample apps.
 import com.yugabyte.sample.apps.*;
 import com.yugabyte.sample.apps.AppBase.TableOp;
+import org.apache.commons.cli.*;
+import org.apache.log4j.Logger;
+
+import java.util.*;
 
 /**
  * This is a helper class to parse the user specified command-line options if they were specified,
@@ -663,6 +650,10 @@ public class CmdLineOpts {
     if (cmd.hasOption("create_table_name")) {
       AppBase.appConfig.tableName = cmd.getOptionValue("create_table_name");
       LOG.info("Create table name: " + AppBase.appConfig.tableName);
+    }
+    if (cmd.hasOption("create_table_defn")) {
+        AppBase.appConfig.createTableDefn = cmd.getOptionValue("create_table_defn");
+        LOG.info("Create table Defn: " + AppBase.appConfig.createTableDefn);
     }
     if (cmd.hasOption("truncate")) {
       AppBase.appConfig.tableOp = TableOp.TruncateTable;
