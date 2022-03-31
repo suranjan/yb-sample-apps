@@ -47,29 +47,22 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "user_profile";
+  private static final String DEFAULT_TABLE_NAME = "api_sub_apple_orig_transactions";
 
     @Override protected String getKeyspace() {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE user_profile\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_sub_apple_orig_transactions\n"
             + "(\n"
-            + "  k               text PRIMARY KEY,\n"
-            + "  v               text ,\n"
-            + "  id              bigserial not null,\n"
-            + "  userid          bigint not null default 928732,\n"
-            + "  ismasterprofile bigint not null default '0',\n"
-            + "  profiletype     varchar(255) default 'application/pdf',\n"
-            + "  orderid         bigint default '4645',\n"
-            + "  name            varchar(255) default 'Jaymie Bullick',\n"
-            + "  locale          varchar(255),\n"
-            + "  profilepic      varchar(255) default 'http://dummyimage.com/213x100.png/ff4444/ffffff',\n"
-            + "  createdby       bigint default 33956,\n"
-            + "  createddate     timestamptz default '2018-10-15T12:10:21Z',\n"
-            + "  updatedby       bigint default 18315,\n"
-            + "  updateddate     timestamptz default '2018-03-14T02:22:03Z',\n"
-            + "  isdeleted       boolean default 'f'\n"
+            + "  k                     text PRIMARY KEY,\n"
+            + "  v                     text ,\n"
+            + "  id                    bigserial not null,\n"
+            + "  createddate           timestamptz default '2016-07-14T09:39:04Z',\n"
+            + "  lastcheckeddate       timestamptz default '2019-02-20T13:44:56Z',\n"
+            + "  originaltransactionid varchar(255) default '39e64acc-1c47-434a-9066-96abe8ba7add',\n"
+            + "  receipttext           text default 'Azeri',\n"
+            + "  status                bigint default 79,\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
