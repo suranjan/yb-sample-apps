@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
+import com.yugabyte.sample.apps.AppBase.TableOp;
 import com.yugabyte.sample.common.SimpleLoadGenerator.Key;
 
 /**
@@ -199,7 +199,7 @@ public class SqlInserts extends AppBase {
       statement.setString(1, key.asString());
       statement.setString(2, key.getValueStr());
       result = statement.executeUpdate();
-      LOG.info("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
+      LOG.debug("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
           result);
       getSimpleLoadGenerator().recordWriteSuccess(key);
     } catch (Exception e) {
