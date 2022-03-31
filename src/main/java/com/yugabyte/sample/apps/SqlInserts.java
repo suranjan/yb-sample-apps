@@ -61,7 +61,7 @@ public class SqlInserts extends AppBase {
             + "  ingestdate      timestamptz default '2020-09-03T08:21:22Z',\n"
             + "  notification   varchar(255) default 'Polarised multi-state interface',\n"
             + "  subscriptionid varchar(255) default 1307,\n"
-            + "  userid         bigint 324586\n"
+            + "  userid         bigint default 324586\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
