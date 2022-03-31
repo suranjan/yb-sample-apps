@@ -47,29 +47,24 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "user_profile";
+  private static final String DEFAULT_TABLE_NAME = "api_user_partner_transaction_log";
 
     @Override protected String getKeyspace() {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE user_profile\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_user_partner_transaction_log\n"
             + "(\n"
             + "  k               text PRIMARY KEY,\n"
             + "  v               text ,\n"
             + "  id              bigserial not null,\n"
-            + "  userid          bigint not null default 928732,\n"
-            + "  ismasterprofile bigint not null default '0',\n"
-            + "  profiletype     varchar(255) default 'application/pdf',\n"
-            + "  orderid         bigint default '4645',\n"
-            + "  name            varchar(255) default 'Jaymie Bullick',\n"
-            + "  locale          varchar(255),\n"
-            + "  profilepic      varchar(255) default 'http://dummyimage.com/213x100.png/ff4444/ffffff',\n"
-            + "  createdby       bigint default 33956,\n"
-            + "  createddate     timestamptz default '2018-10-15T12:10:21Z',\n"
-            + "  updatedby       bigint default 18315,\n"
-            + "  updateddate     timestamptz default '2018-03-14T02:22:03Z',\n"
-            + "  isdeleted       boolean default 'f'\n"
+            + "  isoriginalpurchase    boolean default false,\n"
+            + "  json                  text '[{},{},{},{},{}]',\n"
+            + "  originaltransactionid varchar(255) '8a85eed2-acf5-49b3-bb41-18a06d2dbd4a',\n"
+            + "  partner               varchar(255) 'Kayveo',\n"
+            + "  transactionid         varchar(255) '3db4d92b-920b-4f82-a50c-a656993cf02d',\n"
+            + "  transactiontype       bigint 444,\n"
+            + "  userid                bigint 479818,\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
