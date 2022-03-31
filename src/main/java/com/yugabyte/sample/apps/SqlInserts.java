@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
+import com.yugabyte.sample.apps.AppBase.TableOp;
 import com.yugabyte.sample.common.SimpleLoadGenerator.Key;
 
 /**
@@ -61,7 +61,7 @@ public class SqlInserts extends AppBase {
             + "  ingestdate      timestamptz default '2020-09-03T08:21:22Z',\n"
             + "  notification   varchar(255) default 'Polarised multi-state interface',\n"
             + "  subscriptionid varchar(255) 1307,\n"
-            + "  userid         bigint 324586,\n"
+            + "  userid         bigint 324586\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
