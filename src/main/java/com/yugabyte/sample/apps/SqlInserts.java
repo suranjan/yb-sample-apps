@@ -61,7 +61,7 @@ public class SqlInserts extends AppBase {
             + "  activationcode    varchar(255) default 'activationCode2',\n"
             + "  createddate       timestamptz default '2012-06-29T01:45:58Z',\n"
             + "  devicedescription varchar(255) default 'Damaliscus dorcas',\n"
-            + "  deviceid          varchar(255) deafult '56062-535',\n"
+            + "  deviceid          varchar(255) default '56062-535',\n"
             + "  devicetoken       varchar(255) default 'c6687952-46c1-4669-9817-1a0c605206d3',\n"
             + "  ipaddress         varchar(255) default '56.149.207.111',\n"
             + "  partner           varchar(255) default 'partner3',\n"
