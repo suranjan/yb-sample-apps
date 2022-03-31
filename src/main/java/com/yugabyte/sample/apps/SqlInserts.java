@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
+import com.yugabyte.sample.apps.AppBase.TableOp;
 import com.yugabyte.sample.common.SimpleLoadGenerator.Key;
 
 /**
@@ -47,29 +47,40 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "user_profile";
+  private static final String DEFAULT_TABLE_NAME = "api_apple_store_receipt_log";
 
     @Override protected String getKeyspace() {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE user_profile\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_apple_store_receipt_log\n"
             + "(\n"
             + "  k               text PRIMARY KEY,\n"
             + "  v               text ,\n"
             + "  id              bigserial not null,\n"
-            + "  userid          bigint not null default 928732,\n"
-            + "  ismasterprofile bigint not null default '0',\n"
-            + "  profiletype     varchar(255) default 'application/pdf',\n"
-            + "  orderid         bigint default '4645',\n"
-            + "  name            varchar(255) default 'Jaymie Bullick',\n"
-            + "  locale          varchar(255),\n"
-            + "  profilepic      varchar(255) default 'http://dummyimage.com/213x100.png/ff4444/ffffff',\n"
-            + "  createdby       bigint default 33956,\n"
-            + "  createddate     timestamptz default '2018-10-15T12:10:21Z',\n"
-            + "  updatedby       bigint default 18315,\n"
-            + "  updateddate     timestamptz default '2018-03-14T02:22:03Z',\n"
-            + "  isdeleted       boolean default 'f'\n"
+            + "  appitemid       varchar(255) default 'fa4323d6-8293-46e6-b0eb-a080cfeb04cf',\n"
+            + "  bid             varchar(255) default  '917e7638-ea19-4d55-91a9-d41cfd3de13a',\n"
+            + "  bvrs            varchar(255) default  'Portuguese',\n"
+            + "  expiresdate       varchar(255) default '2010-06-23T12:53:53Z',\n"
+            + "  expiresdateformated       varchar(255) default 'YYYY-MM-ddTHH:mm:ssZ',\n"
+            + "  expiresdateformattedpst       varchar(255) default 'YYYY/dd/mm',\n"
+            + "  itemid       varchar(255) default '1f17b20c-cf72-44c2-99ae-eac91bb15c97',\n"
+            + "  originalpurchasedate       varchar(255) default '2021-05-18T17:03:32Z',\n"
+            + "  originalpurchasedatems       varchar(255) default 'YYYY-MM-ddTHH:mm:ssZ',\n"
+            + "  originalpurchasedatepst       varchar(255) default '2010-09-16',\n"
+            + "  originaltransactionid       varchar(255) default '7296ec22-3ef7-4474-b7e5-df720ec1bb5e',\n"
+            + "  productid       varchar(255) default '1G6AF5S36E0511228',\n"
+            + "  purchasedate       varchar(255) default '2019-11-18T15:44:46Z',\n"
+            + "  purchasedatems       varchar(255) default 'YYYY-MM-ddTHH:mm:ssZ',\n"
+            + "  purchasedatepst       varchar(255) default '2012-02-28',\n"
+            + "  quantity       bigint not null default '67',\n"
+            + "  transactionid       varchar(255) default '45b08c1d-f9ef-4127-80c8-a65f049713d2',\n"
+            + "  uniqueidentifier       varchar(255) default 'd511accb-99f1-4397-9693-ca6802da2760',\n"
+            + "  userid       bigint default '260036',\n"
+            + "  versionexternalidentifier       varchar(255) default 'fe6bde4f-69c6-406c-91ee-e24f281535df',\n"
+            + "  weborderlineitemid       varchar(255) default '00cb6627-91c7-4aa3-ad2d-ead96011eb5c',\n"
+            + "  expirationintent       bigint default '21',\n"
+            + "  cancellationreason       bigint default '84',\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
@@ -201,7 +212,7 @@ public class SqlInserts extends AppBase {
       statement.setString(1, key.asString());
       statement.setString(2, key.getValueStr());
       result = statement.executeUpdate();
-      LOG.info("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
+      LOG.debug("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
           result);
       getSimpleLoadGenerator().recordWriteSuccess(key);
     } catch (Exception e) {
