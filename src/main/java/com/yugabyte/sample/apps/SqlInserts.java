@@ -59,12 +59,12 @@ public class SqlInserts extends AppBase {
             + "  v               text ,\n"
             + "  id              bigserial not null,\n"
             + "  isoriginalpurchase    boolean default false,\n"
-            + "  json                  text '[{},{},{},{},{}]',\n"
-            + "  originaltransactionid varchar(255) '8a85eed2-acf5-49b3-bb41-18a06d2dbd4a',\n"
-            + "  partner               varchar(255) 'Kayveo',\n"
-            + "  transactionid         varchar(255) '3db4d92b-920b-4f82-a50c-a656993cf02d',\n"
-            + "  transactiontype       bigint 444,\n"
-            + "  userid                bigint 479818\n"
+            + "  json                  text default '[{},{},{},{},{}]',\n"
+            + "  originaltransactionid varchar(255) default '8a85eed2-acf5-49b3-bb41-18a06d2dbd4a',\n"
+            + "  partner               varchar(255) default 'Kayveo',\n"
+            + "  transactionid         varchar(255) default '3db4d92b-920b-4f82-a50c-a656993cf02d',\n"
+            + "  transactiontype       bigint default 444,\n"
+            + "  userid                bigint default 479818\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
