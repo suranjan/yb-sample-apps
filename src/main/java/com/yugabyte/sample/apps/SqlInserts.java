@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
+import com.yugabyte.sample.apps.AppBase.TableOp;
 import com.yugabyte.sample.common.SimpleLoadGenerator.Key;
 
 /**
@@ -62,7 +62,7 @@ public class SqlInserts extends AppBase {
             + "  lastcheckeddate       timestamptz default '2019-02-20T13:44:56Z',\n"
             + "  originaltransactionid varchar(255) default '39e64acc-1c47-434a-9066-96abe8ba7add',\n"
             + "  receipttext           text default 'Azeri',\n"
-            + "  status                bigint default 79,\n"
+            + "  status                bigint default 79\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
@@ -194,7 +194,7 @@ public class SqlInserts extends AppBase {
       statement.setString(1, key.asString());
       statement.setString(2, key.getValueStr());
       result = statement.executeUpdate();
-      LOG.info("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
+      LOG.debug(" key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
           result);
       getSimpleLoadGenerator().recordWriteSuccess(key);
     } catch (Exception e) {
