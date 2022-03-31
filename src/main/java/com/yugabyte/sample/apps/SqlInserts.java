@@ -80,7 +80,7 @@ public class SqlInserts extends AppBase {
             + "  versionexternalidentifier       varchar(255) default 'fe6bde4f-69c6-406c-91ee-e24f281535df',\n"
             + "  weborderlineitemid       varchar(255) default '00cb6627-91c7-4aa3-ad2d-ead96011eb5c',\n"
             + "  expirationintent       bigint default '21',\n"
-            + "  cancellationreason       bigint default '84',\n"
+            + "  cancellationreason       bigint default '84'\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
