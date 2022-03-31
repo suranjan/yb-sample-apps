@@ -47,23 +47,29 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "api_watch_list";
+  private static final String DEFAULT_TABLE_NAME = "api_user_device";
 
     @Override protected String getKeyspace() {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_watch_list\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_user_device\n"
             + "(\n"
-            + "  k                       text PRIMARY KEY,\n"
-            + "  v                       text ,\n"
-            + "  id                      bigserial not null,\n"
-            + "  userid                  bigint not null default '402136',\n"
-            + "  profileid               bigint not null default '913657',\n"
-            + "  externalid              varchar(255) not null default '7f985532-4f86-43d7-99b4-fbb2bd3c3609',\n"
-            + "  watchlistexternalidtype varchar(255) default 'fa7cf363-8e0a-454a-a39c-3e1df3633c47',\n"
-            + "  createddate             timestamptz default '2020-10-03T07:35:35Z',\n"
-            + "  updateddate             timestamptz default '2013-04-29T08:36:50Z'\n"
+            + "  k                 text PRIMARY KEY,\n"
+            + "  v                 text ,\n"
+            + "  id                bigserial not null,\n"
+            + "  activationcode    varchar(255) default 'activationCode2',\n"
+            + "  createddate       timestamptz default '2012-06-29T01:45:58Z',\n"
+            + "  devicedescription varchar(255) default 'Damaliscus dorcas',\n"
+            + "  deviceid          varchar(255) deafult '56062-535',\n"
+            + "  devicetoken       varchar(255) default 'c6687952-46c1-4669-9817-1a0c605206d3',\n"
+            + "  ipaddress         varchar(255) default '56.149.207.111',\n"
+            + "  partner           varchar(255) default 'partner3',\n"
+            + "  lastupdate        timestamptz default '2021-07-22T20:12:29Z',\n"
+            + "  status            bigint default 80,\n"
+            + "  userid            bigint default 8590,\n"
+            + "  encryption_level  bigint default 6,\n"
+            + "  isdeleted         boolean default false\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
