@@ -47,24 +47,23 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "api_user_partner_transaction_log";
+  private static final String DEFAULT_TABLE_NAME = "api_watch_list";
 
     @Override protected String getKeyspace() {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_user_partner_transaction_log\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_watch_list\n"
             + "(\n"
-            + "  k               text PRIMARY KEY,\n"
-            + "  v               text ,\n"
-            + "  id              bigserial not null,\n"
-            + "  isoriginalpurchase    boolean default false,\n"
-            + "  json                  text '[{},{},{},{},{}]',\n"
-            + "  originaltransactionid varchar(255) '8a85eed2-acf5-49b3-bb41-18a06d2dbd4a',\n"
-            + "  partner               varchar(255) 'Kayveo',\n"
-            + "  transactionid         varchar(255) '3db4d92b-920b-4f82-a50c-a656993cf02d',\n"
-            + "  transactiontype       bigint 444,\n"
-            + "  userid                bigint 479818\n"
+            + "  k                       text PRIMARY KEY,\n"
+            + "  v                       text ,\n"
+            + "  id                      bigserial not null,\n"
+            + "  userid                  bigint not null default '402136'\n"
+            + "  profileid               bigint not null default '913657'\n"
+            + "  externalid              varchar(255) not null default '7f985532-4f86-43d7-99b4-fbb2bd3c3609',\n"
+            + "  watchlistexternalidtype varchar(255) default 'fa7cf363-8e0a-454a-a39c-3e1df3633c47',\n"
+            + "  createddate             timestamptz default '2020-10-03T07:35:35Z',\n"
+            + "  updateddate             timestamptz default '2013-04-29T08:36:50Z'\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
