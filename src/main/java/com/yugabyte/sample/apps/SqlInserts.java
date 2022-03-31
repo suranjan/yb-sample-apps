@@ -47,29 +47,27 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "user_profile";
+  private static final String DEFAULT_TABLE_NAME = "api_oauth_access_token";
 
     @Override protected String getKeyspace() {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE user_profile\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_oauth_access_token\n"
             + "(\n"
-            + "  k               text PRIMARY KEY,\n"
-            + "  v               text ,\n"
-            + "  id              bigserial not null,\n"
-            + "  userid          bigint not null default 928732,\n"
-            + "  ismasterprofile bigint not null default '0',\n"
-            + "  profiletype     varchar(255) default 'application/pdf',\n"
-            + "  orderid         bigint default '4645',\n"
-            + "  name            varchar(255) default 'Jaymie Bullick',\n"
-            + "  locale          varchar(255),\n"
-            + "  profilepic      varchar(255) default 'http://dummyimage.com/213x100.png/ff4444/ffffff',\n"
-            + "  createdby       bigint default 33956,\n"
-            + "  createddate     timestamptz default '2018-10-15T12:10:21Z',\n"
-            + "  updatedby       bigint default 18315,\n"
-            + "  updateddate     timestamptz default '2018-03-14T02:22:03Z',\n"
-            + "  isdeleted       boolean default 'f'\n"
+            + "  k                      text PRIMARY KEY,\n"
+            + "  v                      text ,\n"
+            + "  access_token_id        bigserial not null,\n"
+            + "  access_token           varchar(2048) not null default '15eujNJCmhVdqFN5T3dPkGEh6hfo3kTbSn',\n"
+            + "  access_token_hashed    varchar(512) not null default '8bad98be96213362ff4aa8c638f0e0c4c1aa2ba032c86de7ceab2c38d9d1986f',\n"
+            + "  additional_information varchar(1024) default 'Curabitur at ipsum ac tellus semper interdum.',\n"
+            + "  client_id              varchar(255) not null default 'f0b015f4-673f-4ca3-9e2a-ecc0aec3d9c7',\n"
+            + "  expires_in             timestamptz not null default '2013-11-16T04:40:29Z',\n"
+            + "  grant_type             bigint not null default 56,\n"
+            + "  refresh_token          varchar(2048) not null default '1FhDfbBiBVXWGZfXTG6AhYEtte7CDmpd4y',\n"
+            + "  refresh_token_hashed   varchar(512) not null default '30799c54ca6547a63a5cec4afe2a294c039a028e46038e93d6dcd1bbdda62c4f',\n"
+            + "  scope                  bigint default 95,\n"
+            + "  userid                 bigint not null default 139238,\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
