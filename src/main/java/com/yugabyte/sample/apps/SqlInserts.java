@@ -67,7 +67,7 @@ public class SqlInserts extends AppBase {
             + "  refresh_token          varchar(2048) not null default '1FhDfbBiBVXWGZfXTG6AhYEtte7CDmpd4y',\n"
             + "  refresh_token_hashed   varchar(512) not null default '30799c54ca6547a63a5cec4afe2a294c039a028e46038e93d6dcd1bbdda62c4f',\n"
             + "  scope                  bigint default 95,\n"
-            + "  userid                 bigint not null default 139238,\n"
+            + "  userid                 bigint not null default 139238\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
