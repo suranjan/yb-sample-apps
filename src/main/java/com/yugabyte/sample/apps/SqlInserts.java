@@ -201,7 +201,7 @@ public class SqlInserts extends AppBase {
       statement.setString(1, key.asString());
       statement.setString(2, key.getValueStr());
       result = statement.executeUpdate();
-      LOG.debug("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
+      LOG.info("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
           result);
       getSimpleLoadGenerator().recordWriteSuccess(key);
     } catch (Exception e) {
