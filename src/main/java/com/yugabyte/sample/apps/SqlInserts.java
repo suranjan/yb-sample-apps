@@ -60,7 +60,7 @@ public class SqlInserts extends AppBase {
             + "  id              bigserial not null,\n"
             + "  ingestdate      timestamptz default '2020-09-03T08:21:22Z',\n"
             + "  notification   varchar(255) default 'Polarised multi-state interface',\n"
-            + "  subscriptionid varchar(255) '1307',\n"
+            + "  subscriptionid varchar(255) default 1307,\n"
             + "  userid         bigint 324586\n"
             + ") split into 40 tablets;";
 
