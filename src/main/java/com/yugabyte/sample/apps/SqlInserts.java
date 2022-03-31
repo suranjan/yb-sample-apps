@@ -64,7 +64,7 @@ public class SqlInserts extends AppBase {
             + "  sharestatus                         char(1) default 'd',\n"
             + "  termsofusedate                      date default '2016/05/17',\n"
             + "  termsofuseversion                   varchar(255) default '8.3.4',\n"
-            + "  userstatus                          bigint 34,\n"
+            + "  userstatus                          bigint default 34,\n"
             + "  verifiedemail                       boolean default false,\n"
             + "  parental_control_pin                varchar(10) default '076',\n"
             + "  parental_control_restriction_level  varchar(100) default '708',\n"
