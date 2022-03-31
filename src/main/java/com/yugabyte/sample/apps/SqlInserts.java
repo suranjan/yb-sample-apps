@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
+import com.yugabyte.sample.apps.AppBase.TableOp;
 import com.yugabyte.sample.common.SimpleLoadGenerator.Key;
 
 /**
@@ -64,7 +64,7 @@ public class SqlInserts extends AppBase {
             + "  partner               varchar(255) 'Kayveo',\n"
             + "  transactionid         varchar(255) '3db4d92b-920b-4f82-a50c-a656993cf02d',\n"
             + "  transactiontype       bigint 444,\n"
-            + "  userid                bigint 479818,\n"
+            + "  userid                bigint 479818\n"
             + ") split into 40 tablets;";
 
     // The shared prepared select statement for fetching the data.
