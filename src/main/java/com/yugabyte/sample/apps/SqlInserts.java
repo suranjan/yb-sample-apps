@@ -53,7 +53,7 @@ public class SqlInserts extends AppBase {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE user_attribute\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE IF NOT EXISTS user_attribute\n"
             + "(\n"
             + "  k                                   text PRIMARY KEY,\n"
             + "  v                                   text ,\n"
