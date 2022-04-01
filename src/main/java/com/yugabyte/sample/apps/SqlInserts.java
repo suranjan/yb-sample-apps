@@ -53,7 +53,7 @@ public class SqlInserts extends AppBase {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE api_apple_store_receipt_log\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE IF NOT EXISTS api_apple_store_receipt_log\n"
             + "(\n"
             + "  k               text PRIMARY KEY,\n"
             + "  v               text ,\n"
