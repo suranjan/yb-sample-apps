@@ -211,7 +211,9 @@ public class SqlInserts extends AppBase {
       // Prefix hashcode to ensure generated keys are random and not sequential.
       statement.setString(1, key.asString());
       statement.setString(2, key.getValueStr());
+      statement.execute("BEGIN;");
       result = statement.executeUpdate();
+      statement.execute("COMMIT;");
       LOG.debug("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
           result);
       getSimpleLoadGenerator().recordWriteSuccess(key);
