@@ -47,30 +47,29 @@ public class SqlInserts extends AppBase {
   }
 
   // The default table name to create and use for CRUD ops.
-  private static final String DEFAULT_TABLE_NAME = "user_profile";
+  private static final String DEFAULT_TABLE_NAME = "userconnection";
 
     @Override protected String getKeyspace() {
         return super.getKeyspace();
     }
 
-    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE IF NOT EXISTS user_profile\n"
+    private static final String DEFAULT_TABLE_DEFN = "CREATE TABLE IF NOT EXISTS userconnection\n"
             + "(\n"
             + "  k               text PRIMARY KEY,\n"
             + "  v               text ,\n"
-            + "  id              bigserial not null,\n"
+            + "  providerid      varchar(255) not null default 'Jaymie Bullick',\n"
+            + "  provideruserid  varchar(255) not null default 'Jaymie Bullick',\n"
             + "  userid          bigint not null default 928732,\n"
-            + "  ismasterprofile bigint not null default '0',\n"
-            + "  profiletype     varchar(255) default 'application/pdf',\n"
-            + "  orderid         bigint default '4645',\n"
-            + "  name            varchar(255) default 'Jaymie Bullick',\n"
-            + "  locale          varchar(255),\n"
-            + "  profilepic      varchar(255) default 'http://dummyimage.com/213x100.png/ff4444/ffffff',\n"
-            + "  createdby       bigint default 33956,\n"
-            + "  createddate     timestamptz default '2018-10-15T12:10:21Z',\n"
-            + "  updatedby       bigint default 18315,\n"
-            + "  updateddate     timestamptz default '2018-03-14T02:22:03Z',\n"
-            + "  isdeleted       boolean default 'f'\n"
-            + ") split into 40 tablets;";
+            + "  accesstoken     varchar(2048) not null default 'accesstoken/pdf',\n"
+            + "  displayname     varchar(255) default 'Jaymie Bullick',\n"
+            + "  expiretime      bigint default '4645',\n"
+            + "  imageurl        varchar(512) default 'Jaymie Bullick',\n"
+            + "  profileurl      varchar(512) default 'Jaymie Bullick',\n"
+            + "  rank            bigint not null default '4645',\n"
+            + "  redirecturi     varchar(255) default 'Jaymie Bullick',\n"
+            + "  refreshtoken    varchar(2048) default 'Jaymie Bullick',\n"
+            + "  secret          varchar(255) default 'Jaymie Bullick'\n"
+            + ") split into 1 tablets;";
 
     // The shared prepared select statement for fetching the data.
   private volatile Connection selConnection = null;
@@ -201,7 +200,7 @@ public class SqlInserts extends AppBase {
       statement.setString(1, key.asString());
       statement.setString(2, key.getValueStr());
       result = statement.executeUpdate();
-      LOG.info("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
+      LOG.debug("Wrote key: " + key.asString() + ", " + key.getValueStr() + ", return code: " +
           result);
       getSimpleLoadGenerator().recordWriteSuccess(key);
     } catch (Exception e) {

@@ -71,7 +71,7 @@ public class SimpleLoadGenerator {
     }
 
     public void verify(String value) {
-      if (value == null /*|| !value.equals(getValueStr())*/) {
+      if (value == null || !value.equals(getValueStr())) {
         LOG.fatal("Value mismatch for key: " + key.toString() +
                   ", expected: " + getValueStr() +
                   ", got: " + value);
